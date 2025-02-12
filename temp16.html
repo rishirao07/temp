@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let users= [];
+        let username = ""
+        let usermail = ""
+        let currBalance=0
+        function showUser(){
+            let str = ""
+            for(let i=0;i<users.length;i++){
+                
+            }
+        }
+        function saveData(){
+            let amount = Number(document.getElementById("amount").value);
+            let type = document.getElementById("type").value;
+            for(let i=0;i<users.length;i++){
+                if (users[i].email == usermail){
+                    if(type=="1"){
+                        users[i].balance += amount;
+                    }
+                    else if(type=="2"){
+                        if(users[i].balance > amount){
+                        users[i].balance -= amount;
+                        }
+                        else{
+                            funds.innerHTML="Insufficient funds";
+                        }
+                    }
+                    spBalance.innerHTML = users[i].balance;
+                    break;
+                }
+            }
+        }
+
+        function home(){
+            let str = `
+            <h2>Welcome ${username}</h2>
+            <button onclick = 'showLogin()'>Logout</button>
+            <p><select id="type">
+                <option value=0>---Select---</option>
+                <option value=1>Deposit</option>
+                <option value=2>Withdraw</option>
+                <option value=3>Transfer</option>
+                </select></p>
+                <p><select id="selUser"></select></p>
+                <p><input type="number" id="amount" placeholder="Enter amount"></p>
+                <button onclick='saveData()'>Submit</button>
+                <div id="funds"><p>Current Balance: <span id='spBalance'>${currBalance}</span></p></div>
+            `
+            root.innerHTML = str;
+        }
+        function addUser(){
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            let dob = document.getElementById("dob").value;
+            let user = {
+                name:name,
+                email:email,
+                password:password,
+                dob:dob,
+                balance:0
+            }
+            users.push(user)
+            showLogin();
+        }
+        function showForm(){
+            let str = `
+            <h1>New User Registration form </h1>
+            <p><input type="text" id="name" placeholder="Enter name"></p>
+            <p><input type="text" id="email" placeholder="Enter email"></p>
+            <p><input type="password" id="password" placeholder="Enter password"></p>
+            <p><input type="datetime-local" id="dob"></p>
+            <button onclick='addUser()'>submit</button>
+            <p>Already a member?<button onclick='showLogin()'>Login here</button></p>
+            `
+            root.innerHTML=str;
+        }
+        function showLogin(){
+            let str = `
+            <div>
+                
+                <div id='msg'></div>
+                <p><input id="email" type="text"></p>
+                <p><input id="password" type="password"></p>
+                <button onclick='chkUser()'>Log In</button>
+                <p><button onclick='showForm()'>Create Account</button></p>  
+            </div>    
+            `
+            root.innerHTML = str;
+        }
+        function chkUser(){
+            let email=document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            for(let i=0;i<users.length;i++){
+                if(users[i].email==email && users[i].password==password){
+                    usermail=email;
+                    username=users[i].name;
+                    currBalance = users[i].balance;
+                    home();
+                    break;
+                }
+                else
+                {
+                    msg.innerHTML="Access Denied";
+                }
+            }
+            
+            
+        }
+    </script>
+</head>
+<body onload="showLogin()">
+    <h1>HDFC Bank</h1>
+    <hr>
+    <div id="root"></div>
+    <hr>
+    <h3>@Copyright 2005. All rights reserved.</h3>
+</body>
+</html>
