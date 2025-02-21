@@ -116,6 +116,9 @@
       let yy;
       let pronoun;
       let g = "";
+      let movies;
+      let music;
+      let sports;
       const showData = () => {
         firstname = document.getElementById("firstname").value;
         surname = document.getElementById("surname").value;
@@ -126,6 +129,13 @@
         dd = Number(document.getElementById("day").value);
         mm = Number(document.getElementById("month").value);
         yy = Number(document.getElementById("year").value);
+        sports = document.getElementById("sports").checked;
+        music = document.getElementById("music").checked;
+        movies = document.getElementById("movies").checked;
+        let strInterests = "";
+        if(sports) strInterests += "Sports ";
+        if(music) strInterests += "Music ";
+        if(movies) strInterests += "Movies ";
         console.log(dd, mm, yy);
         let dob = `${dd}-${months[mm]}-${yy}`;
         g = "";
@@ -139,6 +149,7 @@
           <p>Password:${password}</p>
           <p>Gender:${g}</p>
           <p>Date of Birth:${dob}</p>
+          <p>Interests:${strInterests}</p>
           <button>Confirm</button>
           <button onclick=showForm()>Edit</button>
         </div>
@@ -238,20 +249,23 @@
         <div class="radioClass">
           <div><label> Sports</label></div>
           <div><input type="checkbox" ${
-            g === "Female" && "checked"
-          } name="gender" onclick="togglePronoun()" /></div>
+              sports && "checked"
+            }  
+           id="sports"  /></div>
         </div>
         <div class="radioClass">
           <div><label> Music</label></div>
           <div><input type="checkbox" ${
-            g === "Male" && "checked"
-          } name="gender" onclick="togglePronoun()" /></div>
+              music && "checked"
+            }
+           id="music" /></div>
         </div>
         <div class="radioClass">
           <div><label> Movies</label></div>
           <div><input type="checkbox" ${
-            pronoun != "NA" && "checked"
-          } name="gender" onclick="togglePronoun()" /></div>
+               movies && "checked"
+            }
+           id="movies" /></div>
         </div>
       </div>
 
