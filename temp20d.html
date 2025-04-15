@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+
+        let a=false; //let a(type=undef), let a=null(type=obj), let a=0(type=num), let a=false(type=bool)
+        console.log(typeof(a));
+        a ? console.log("True") : console.log("false");
+                
+        let result = a || 10
+        console.log(result);
+
+        let result1 = a ?? 10
+        console.log(result1);
+        
+        
+    </script>
+</body>
+</html>
